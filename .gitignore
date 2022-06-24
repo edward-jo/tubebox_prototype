@@ -48,3 +48,6 @@ app.*.map.json
 
 .fvm
 .env
+ios/Podfile
+macos/Podfile
+
