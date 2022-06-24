@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:tubebox_prototype/secure.dart';
 
-void main() {
+void main() async {
+  /// Load environment variables
+  await dotenv.load();
+
   runApp(const MyApp());
 }
 
@@ -30,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
-      body: const Center(child: Text('Hello TubeBox')),
+      body: Center(child: Text('Hello TubeBox\n$webClientId')),
     );
   }
 }
