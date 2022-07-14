@@ -49,5 +49,7 @@ app.*.map.json
 .fvm
 .env
 ios/Podfile
+ios/Podfile.lock
 macos/Podfile
+coverage/
 
