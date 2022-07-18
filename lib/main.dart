@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tubebox_prototype/secure.dart';
+import 'package:tubebox_prototype/ui/themes/theme.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   clientId: webClientId,
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TubeBox',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: appTheme,
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(),
     );
