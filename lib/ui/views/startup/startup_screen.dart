@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 
 class StartUpScreen extends StatelessWidget {
@@ -5,9 +7,16 @@ class StartUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Startup Screen'),
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Placeholder(),
+          ElevatedButton(
+            onPressed: () => developer.log('Pressed'),
+            child: const Text('Google Sign In'),
+          ),
+        ],
       ),
     );
   }
