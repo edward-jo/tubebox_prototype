@@ -1,6 +1,6 @@
-import 'dart:developer' as developer;
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tubebox_prototype/business_logic/view_models/appuser_viewmodel.dart';
 
 class StartUpScreen extends StatelessWidget {
   const StartUpScreen({Key? key}) : super(key: key);
@@ -13,7 +13,9 @@ class StartUpScreen extends StatelessWidget {
         children: [
           const Placeholder(),
           ElevatedButton(
-            onPressed: () => developer.log('Pressed'),
+            onPressed: () async {
+              await context.read<AppUserViewModel>().signIn();
+            },
             child: const Text('Google Sign In'),
           ),
         ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:tubebox_prototype/business_logic/view_models/appuser_viewmodel.dart';
+import 'package:tubebox_prototype/services/service_locator.dart';
 import 'package:tubebox_prototype/ui/themes/theme.dart';
 import 'package:tubebox_prototype/ui/views/startup/startup_screen.dart';
 
@@ -7,6 +10,8 @@ void main() async {
   /// Load environment variables
   await dotenv.load();
 
+  /// Create service locator
+  setupServiceLocator();
   runApp(const MyApp());
 }
 
@@ -15,11 +20,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TubeBox',
-      theme: appTheme,
-      debugShowCheckedModeBanner: false,
-      home: const StartUpScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: serviceLocator<AppUserViewModel>(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'TubeBox',
+        theme: appTheme,
+        debugShowCheckedModeBanner: false,
+        home: const StartUpScreen(),
+      ),
     );
   }
 }
