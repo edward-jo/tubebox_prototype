@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tubebox_prototype/business_logic/view_models/appuser_viewmodel.dart';
+import 'package:tubebox_prototype/ui/views/main/main_screen.dart';
+import 'package:tubebox_prototype/ui/views/signin/signin_screen.dart';
 import 'package:tubebox_prototype/ui/widgets/styled_builder_error_message.dart';
 import 'package:tubebox_prototype/ui/widgets/styled_builder_indicator.dart';
 
@@ -24,20 +26,12 @@ class StartUpScreen extends StatelessWidget {
           );
         }
 
-        return Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Placeholder(),
-              ElevatedButton(
-                onPressed: () async {
-                  await context.read<AppUserViewModel>().signIn();
-                },
-                child: const Text('Google Sign In'),
-              ),
-            ],
-          ),
-        );
+        final isSignedIn = snapshot.data as bool;
+        if (!isSignedIn) {
+          return const SignInScreen();
+        }
+
+        return const MainScreen();
       },
     );
   }
