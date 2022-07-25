@@ -12,14 +12,22 @@ class AppUserViewModel extends ChangeNotifier {
   Future<AppUser?> signIn() async {
     GoogleSignInAccount? account = await _googleSignIn.signIn();
     if (account == null) {
-      developer.log('Failed to sign in');
+      developer.log('Failed to sign in.');
       return null;
     }
     _appUser = AppUser(account);
     return _appUser;
   }
 
-  Future<AppUser?> signOut() async {}
+  Future<AppUser?> signOut() async {
+    GoogleSignInAccount? account = await _googleSignIn.signOut();
+    if (account != null) {
+      developer.log('Failed to sign out.');
+      return _appUser;
+    }
+    _appUser = null;
+    return _appUser;
+  }
 
   Future<bool> isSignedIn() async => await _googleSignIn.isSignedIn();
 }
