@@ -21,5 +21,5 @@ class AppUserViewModel extends ChangeNotifier {
 
   Future<AppUser?> signOut() async {}
 
-  Future<bool> isSignedIn() async => true;
+  Future<bool> isSignedIn() async => await _googleSignIn.isSignedIn();
 }
