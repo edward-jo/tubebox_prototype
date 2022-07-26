@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:tubebox_prototype/business_logic/view_models/appuser_viewmodel.dart';
 import 'package:tubebox_prototype/services/service_locator.dart';
 import 'package:tubebox_prototype/ui/themes/theme.dart';
+import 'package:tubebox_prototype/ui/views/main/main_screen.dart';
+import 'package:tubebox_prototype/ui/views/signin/signin_screen.dart';
+import 'package:tubebox_prototype/ui/views/signin/signin_screen_routebuilder.dart';
 import 'package:tubebox_prototype/ui/views/startup/startup_screen.dart';
 
 void main() async {
@@ -31,6 +34,24 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: const StartUpScreen(),
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            // -- SIGN-IN SCREEN
+            case SignInScreen.routeName:
+              return SignInScreenRouteBuilder(
+                settings: settings,
+                child: const SignInScreen(),
+              );
+            // -- MAIN SCREEN
+            case MainScreen.routeName:
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (context) => const MainScreen(),
+              );
+            default:
+              return null;
+          }
+        },
       ),
     );
   }
