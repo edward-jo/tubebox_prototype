@@ -6,15 +6,20 @@ import 'package:tubebox_prototype/ui/views/signin/signin_screen.dart';
 import 'package:tubebox_prototype/ui/widgets/styled_builder_error_message.dart';
 import 'package:tubebox_prototype/ui/widgets/styled_builder_indicator.dart';
 
-class StartUpScreen extends StatelessWidget {
+class StartUpScreen extends StatefulWidget {
   const StartUpScreen({Key? key}) : super(key: key);
 
   @override
+  State<StartUpScreen> createState() => _StartUpScreenState();
+}
+
+class _StartUpScreenState extends State<StartUpScreen> {
+  @override
   Widget build(BuildContext context) {
     AppUserViewModel vm = context.read<AppUserViewModel>();
-    Future<bool> isSignedInFuture = vm.isSignedIn();
+    Future<bool> autoSignInFuture = vm.autoSignIn();
     return FutureBuilder(
-      future: isSignedInFuture,
+      future: autoSignInFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return const StyledBuilderIndicator();
