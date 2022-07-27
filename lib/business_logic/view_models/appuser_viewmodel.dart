@@ -17,9 +17,13 @@ class AppUserViewModel extends ChangeNotifier {
   void _setGoogleSignInListener() {
     _delGoogleSignInListener();
     _userChangeSubscription = _googleSignIn.onCurrentUserChanged.listen(
-      (account) {
-        _appUser = (account != null) ? AppUser(account) : null;
-        developer.log('account: ${account?.displayName}');
+      (account) async {
+        if (account != null) {
+          final authentication = await account.authentication;
+          _appUser = AppUser(account, authentication);
+        } else {
+          _appUser = null;
+        }
         notifyListeners();
       },
     );
