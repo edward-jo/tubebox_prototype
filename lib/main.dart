@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
+import 'package:tubebox_prototype/business_logic/models/appuser.dart';
 import 'package:tubebox_prototype/business_logic/view_models/appuser_viewmodel.dart';
 import 'package:tubebox_prototype/business_logic/view_models/subscriptions_viewmodel.dart';
 import 'package:tubebox_prototype/services/service_locator.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(
+          value: serviceLocator<AppUser>(),
+        ),
         ChangeNotifierProvider.value(
           value: serviceLocator<AppUserViewModel>(),
         ),
