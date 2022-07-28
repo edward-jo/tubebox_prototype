@@ -20,7 +20,7 @@ class AppUserViewModel extends ChangeNotifier {
       (account) async {
         if (account != null) {
           final authentication = await account.authentication;
-          _appUser = AppUser(account, authentication);
+          _appUser = null;
         } else {
           _appUser = null;
         }
