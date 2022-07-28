@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer' as developer;
 
 import 'package:http/http.dart' as http;
@@ -23,9 +24,11 @@ class YouTubeDataServiceImpl implements YouTubeDataService {
     developer.log('Subscriptions response: \n${response.body.toString()}');
     if (response.statusCode != 200) {
       // TODO: throw exception.
+      developer.log('Failed to fetch subscriptions');
     }
 
     // TODO: return result.
-    return response.body.toString();
+    developer.log(json.decode(response.body).toString());
+    return json.decode(response.body).toString();
   }
 }
