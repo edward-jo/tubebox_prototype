@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tubebox_prototype/business_logic/models/appuser.dart';
 import 'package:tubebox_prototype/business_logic/view_models/appuser_viewmodel.dart';
+import 'package:tubebox_prototype/business_logic/view_models/signin_viewmodel.dart';
 import 'package:tubebox_prototype/business_logic/view_models/subscriptions_viewmodel.dart';
 import 'package:tubebox_prototype/secure.dart';
 import 'package:tubebox_prototype/services/youtube_service/youtube_data_service.dart';
@@ -18,12 +20,12 @@ void setupServiceLocator() {
       ],
     ),
   );
+  serviceLocator.registerSingleton<AppUser>(AppUser());
   serviceLocator.registerSingleton<YouTubeDataService>(
     YouTubeDataServiceImpl(),
   );
-  serviceLocator.registerSingleton<AppUserViewModel>(
-    AppUserViewModel(),
-  );
+  serviceLocator.registerSingleton(SignInViewModel());
+  serviceLocator.registerSingleton<AppUserViewModel>(AppUserViewModel());
   serviceLocator.registerSingleton<SubscriptionsViewModel>(
     SubscriptionsViewModel(),
   );
