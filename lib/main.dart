@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-import 'package:tubebox_prototype/business_logic/view_models/appuser_viewmodel.dart';
-import 'package:tubebox_prototype/business_logic/view_models/subscriptions_viewmodel.dart';
+import 'package:tubebox_prototype/business_logic/models/appuser.dart';
 import 'package:tubebox_prototype/services/service_locator.dart';
 import 'package:tubebox_prototype/ui/themes/theme.dart';
 import 'package:tubebox_prototype/ui/views/main/main_screen.dart';
@@ -26,12 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: serviceLocator<AppUserViewModel>(),
-        ),
-        ChangeNotifierProvider.value(
-          value: serviceLocator<SubscriptionsViewModel>(),
-        ),
+        ChangeNotifierProvider.value(value: serviceLocator<AppUser>()),
       ],
       child: MaterialApp(
         title: 'TubeBox',
